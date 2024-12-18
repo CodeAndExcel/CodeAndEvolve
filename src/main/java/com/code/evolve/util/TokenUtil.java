@@ -32,6 +32,18 @@ public class TokenUtil {
                 .getBody();
     }
 
+    private Date extractExpiredTime(String token){
+        return extractClaims(token).getExpiration();
+    }
+
+    public boolean isValidToken(String token){
+        return extractExpiredTime(token).after(new Date());
+    }
+
+    public String extractUserName(String token){
+        return extractClaims(token).getSubject();
+    }
+
     private Key getKeys() {
         return Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8));
     }
