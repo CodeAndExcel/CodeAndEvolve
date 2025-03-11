@@ -20,6 +20,7 @@ public class UserController {
     @Autowired
     TokenUtil tokenUtil;
 
+
     @PostMapping("/addUser")
     public ResponseEntity<?> addUser(@RequestBody User user){
         return ResponseEntity.ok(userService.createUser(user));
